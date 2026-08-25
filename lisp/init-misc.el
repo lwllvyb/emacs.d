@@ -1241,6 +1241,8 @@ MATCH is optional tag match."
 
   (my-company-ispell-setup)
 
+  (hs-minor-mode 1) ; hide&show  code block
+
   (unless (my-buffer-file-temp-p)
     ;;  trim spaces from end of changed line
     (ws-butler-mode 1)
