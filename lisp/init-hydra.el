@@ -16,8 +16,8 @@
 [_e_] Erase buffer        [_s1_] Pomodoro tiny task  [_O_] Open
 [_r_] Erase this buffer   [_s2_] Pomodoro big task   [_L_] Playlist
 [_f_] Recent file         [_st_] Pomodoro stop       [_K_] Search
-[_d_] Recent directory    [_sr_] Pomodoro resume     [_F_] filter
-[_z_] Jump around (z.sh)  [_sp_] Pomodoro pause      [_E_] replay
+[_d_] Recent directory    [_sr_] Pomodoro resume     [_F_] Filter
+[_z_] Jump around (z.sh)  [_sp_] Pomodoro pause      [_E_] Replay
 [_bh_] Bash history       [_as_] Ascii table
 [_hh_] Favorite theme     [_T_] Typewriter on/off
 [_ka_] Kill other buffers [_V_] Old typewriter
@@ -149,7 +149,7 @@
     ("w" gnus-summary-wide-reply)
     ("W" gnus-article-wide-reply-with-original)
     ("o" (lambda () (interactive) (let* ((file (gnus-mime-save-part))) (when file (copy-yank-str file)))))
-    ("v" my-browser-open-with-mplayer)
+    ("v" my-browser-open-with-media-player)
     ("d" my-browser-download-rss-stream)
     ("b" my-browser-open-link-or-image-or-url)
     (";" eww-lnum-follow)
@@ -280,7 +280,7 @@
     (let* ((audio-file (file-name-nondirectory (dired-file-name-at-point)))
            (base (file-name-base audio-file))
            (ext (file-name-extension audio-file) )
-           (cmd (format "mplayer -quiet \"%s\" \"%s\""
+           (cmd (format "mpv -quiet \"%s\" \"%s\""
                         audio-file
                         (concat base "." (if (string= ext "mp3") "wav" "mp3")))))
       (my-async-shell-command cmd)))
@@ -303,9 +303,9 @@
 [_aa_] Recording Wav       [_df_] Diff 2 files
 [_ee_] Mkv => Srt          [_ff_] Find
 [_+_] Create directory     [_du_] File usage
-[_mp_] Mplayer extra opts
+[_mp_] Media Player opts
 "
-    ("mp" my-mplayer-setup-extra-opts)
+    ("mp" my-media-player-opts-setup)
     ("sa" shenshou-download-subtitle)
     ("se" shenshou-extract-subtitle-from-zip)
     ("pp" (my-copy-file-info 'file-truename))

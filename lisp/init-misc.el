@@ -1208,12 +1208,12 @@ MATCH is optional tag match."
              (length (split-string str separators))
              separators)))
 
-(defun my-mplayer-setup-extra-opts ()
-  "Set up `my-mplayer-extra-opts'."
+(defun my-media-player-opts-setup ()
+  "Set up `my-media-player-extra-opts'."
   (interactive)
   (let* ((opts '(("Clockwise 90 degree rotation" . "-vf rotate=1")
                  ("Anticlockwise 90 degree rotation" . "-vf rotate=2")))
-         (selected (completing-read "Mplayer setup: " opts)))
+         (selected (completing-read "Media Player setup: " opts)))
     (when selected
       (setq selected (cdr (assoc selected opts)))
       (kill-new selected)

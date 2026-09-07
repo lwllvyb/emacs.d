@@ -21,7 +21,6 @@
 (defvar my-cygwin-p (eq system-type 'cygwin) )
 (defvar my-macos-p (eq system-type 'darwin))
 (defvar my-win64-p (eq system-type 'windows-nt))
-(defvar my-cygwin-p (eq system-type 'cygwin) )
 (defvar my-linux-p (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
 (defvar my-emacs30-p (>= emacs-major-version 30))
 
