@@ -273,7 +273,7 @@ For example, you can '(setq my-media-player-extra-opts \"-fs -ao alsa -vo vdpau\
   (let* ((program "mpv")
          (common-opts "-fs -quiet"))
     (cond
-     ((or my-macos-p my-linux-p)
+     ((and (or my-macos-p my-linux-p) (not my-wsl-p))
       (cond
        ((executable-find "mpv")
         (setq program "mpv"))
@@ -282,17 +282,22 @@ For example, you can '(setq my-media-player-extra-opts \"-fs -ao alsa -vo vdpau\
 
      (my-win64-p
       (cond
-       ((file-executable-p "c:/mpv/mpv.exe")
-        (setq program "c:/mpv/mpv.exe"))
-       ((file-executable-p "d:/mpv/mpv.exe")
-        (setq program "d:/mpv/mpv.exe"))
-       ((file-executable-p "c:/Program Files/mpv/mpv.exe")
-        (setq program "\"c:/Program Files/mpv/mpv.exe\""))
-       ((file-executable-p "d:/Program Files/mpv/mpv.exe")
-        (setq program "\"d:/Program Files/mpv/mpv.exe\""))
+       ((file-executable-p "c:/Program Files/MPV Player/mpv.exe")
+        (setq program "\"c:/Program Files/MPV Player/mpv.exe\""))
+       ((file-executable-p "d:/Program Files/MPV Player/mpv.exe")
+        (setq program "\"d:/Program Files/MPV Player/mpv.exe\""))
        (t
         (error "Can't find media player."))))
 
+
+     (my-wsl-p
+      (cond
+       ((file-executable-p "/mnt/c/Program Files/MPV Player/mpv.exe")
+        (setq program "\"/mnt/c/Program Files/MPV Player/mpv.exe\""))
+       ((file-executable-p "/mnt/d/Program Files/MPV Player/mpv.exe")
+        (setq program "\"/mnt/d/Program Files/MPV Player/mpv.exe\""))
+       (t
+        (error "Can't find media player."))))
 
      (t
       (error "Can't find any media player!")))
